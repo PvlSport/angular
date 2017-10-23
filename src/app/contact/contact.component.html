@@ -35,4 +35,70 @@
       </div>
     </div>
  </div>
+
+ <div 
+  fxFlex
+  fxFlexOffset="20px"
+  class="form-size">
+  <h3>Send us your Feedback</h3>
+  <p>{{feedBackForm.value | json}} {{feedBackForm.status | json}}</p>
+  <form novalidate [formGroup]="feedBackForm" (ngSubmit)="onSubmit">
+    <p>
+      <md-input-container class="half-width"
+        dividerColor="{{(feedBackForm.get('firstname').hasError('required') && feedBackForm.get('firstname').touched) ? 'warn' : primary}}">
+        <input mdInput formControlName="firstname" placeholder="First Name" type="text" required>
+        <md-hint>
+          <span [hidden]="!(feedBackForm.get('firstname').hasError('required') && feedBackForm.get('firstname').touched)">
+            First Name is required
+          </span>
+        </md-hint>
+      </md-input-container>
+      <md-input-container class="half-width"
+        dividerColor="{{(feedBackForm.get('lastname').hasError('required') && feedBackForm.get('lastname').touched) ? 'warn' : primary}}">      
+        <input mdInput formControlName="lastname" placeholder="Last Name" type="text" required>
+        <md-hint>
+            <span [hidden]="!(feedBackForm.get('lastname').hasError('required') && feedBackForm.get('lastname').touched)">
+              Last Name is required
+            </span>
+          </md-hint>
+      </md-input-container>
+      <md-input-container class="half-width"
+        dividerColor="{{(feedBackForm.get('telnum').hasError('required') && feedBackForm.get('telnum').touched) ? 'warn' : primary}}">      
+        <input mdInput formControlName="telnum" placeholder="Telnum" type="tel" required>
+        <md-hint>
+            <span [hidden]="!(feedBackForm.get('telnum').hasError('required') && feedBackForm.get('telnum').touched)">
+              Tel num is required
+            </span>
+          </md-hint>
+      </md-input-container>
+      <md-input-container class="half-width"
+        dividerColor="{{(feedBackForm.get('email').hasError('required') && feedBackForm.get('email').touched) ? 'warn' : primary}}">      
+        <input mdInput formControlName="email" placeholder="Email" type="email" required>
+        <md-hint>
+            <span [hidden]="!(feedBackForm.get('email').hasError('required') && feedBackForm.get('email').touched)">
+              Email is required
+            </span>
+          </md-hint>
+      </md-input-container>
+    </p>
+    <table class="form-size">
+      <td>
+        <md-slide-toggle formControlName="agree">May we contact you?</md-slide-toggle>
+      </td>
+      <td>
+        <md-select formControlName="contacttype" placeholder="How?">
+          <md-option *ngFor="let ctype of contactType" [value]="ctype">
+            {{ctype}}
+          </md-option>
+        </md-select>
+      </td>
+    </table>
+    <p>
+      <md-input-container class="full-width">
+        <textarea mdInput formControlName="message" placeholder="Your feedback" rows=12></textarea>
+      </md-input-container>
+    </p>
+    <button type="submit" [disabled]="feedBackForm.invalid" md-button class="background-primary text-floral-white">Send</button>
+  </form>
+ </div>
 </div>
