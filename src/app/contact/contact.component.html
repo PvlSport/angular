@@ -45,38 +45,38 @@
   <form novalidate [formGroup]="feedBackForm" (ngSubmit)="onSubmit">
     <p>
       <md-input-container class="half-width"
-        dividerColor="{{(feedBackForm.get('firstname').hasError('required') && feedBackForm.get('firstname').touched) ? 'warn' : primary}}">
+        dividerColor="{{formErrors.firstname ? 'warn' : primary}}">
         <input mdInput formControlName="firstname" placeholder="First Name" type="text" required>
         <md-hint>
-          <span [hidden]="!(feedBackForm.get('firstname').hasError('required') && feedBackForm.get('firstname').touched)">
-            First Name is required
+          <span [hidden]="!(formErrors.firstname)">
+            {{formErrors.firstname}}
           </span>
         </md-hint>
       </md-input-container>
       <md-input-container class="half-width"
-        dividerColor="{{(feedBackForm.get('lastname').hasError('required') && feedBackForm.get('lastname').touched) ? 'warn' : primary}}">      
+        dividerColor="{{formErrors.lastname ? 'warn' : primary}}">      
         <input mdInput formControlName="lastname" placeholder="Last Name" type="text" required>
         <md-hint>
-            <span [hidden]="!(feedBackForm.get('lastname').hasError('required') && feedBackForm.get('lastname').touched)">
-              Last Name is required
+            <span [hidden]="!(formErrors.lastname)">
+              {{formErrors.lastname}}
             </span>
           </md-hint>
       </md-input-container>
       <md-input-container class="half-width"
-        dividerColor="{{(feedBackForm.get('telnum').hasError('required') && feedBackForm.get('telnum').touched) ? 'warn' : primary}}">      
-        <input mdInput formControlName="telnum" placeholder="Telnum" type="tel" required>
+        dividerColor="{{formErrors.telnum ? 'warn' : primary}}">      
+        <input mdInput formControlName="telnum" placeholder="Telnum" type="tel" pattern="[0-9]*" required>
         <md-hint>
-            <span [hidden]="!(feedBackForm.get('telnum').hasError('required') && feedBackForm.get('telnum').touched)">
-              Tel num is required
+            <span [hidden]="!(formErrors.telnum)">
+              {{formErrors.telnum}}
             </span>
           </md-hint>
       </md-input-container>
       <md-input-container class="half-width"
-        dividerColor="{{(feedBackForm.get('email').hasError('required') && feedBackForm.get('email').touched) ? 'warn' : primary}}">      
-        <input mdInput formControlName="email" placeholder="Email" type="email" required>
+        dividerColor="{{formErrors.email ? 'warn' : primary}}">      
+        <input mdInput formControlName="email" placeholder="Email" type="email" email required>
         <md-hint>
-            <span [hidden]="!(feedBackForm.get('email').hasError('required') && feedBackForm.get('email').touched)">
-              Email is required
+            <span [hidden]="!(formErrors.email)">
+              {{formErrors.email}}
             </span>
           </md-hint>
       </md-input-container>

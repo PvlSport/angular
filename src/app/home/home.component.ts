@@ -20,10 +20,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.dishservice.getFeaturedDish()
-      .then(featuredDish => this.dish = featuredDish);
+      .subscribe(featuredDish => this.dish = featuredDish);
 
     this.promotionservice.getFeaturedPromotion()
-      .then(featuredPromotion => this.promotion = featuredPromotion);
+      .subscribe(featuredPromotion => this.promotion = featuredPromotion);
   }
 
 }
