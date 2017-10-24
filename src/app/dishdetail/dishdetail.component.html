@@ -7,6 +7,10 @@
   fxLayoutGap.xs="0">
 
   <div fxFlex="40">
+    <div [hidden]="dish">
+      <md-spinner></md-spinner> <h4>Loading... Please wait</h4>
+    </div>
+    
     <md-card *ngIf="dish">
       <md-card-header>
         <md-card-title>
