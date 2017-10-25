@@ -12,15 +12,25 @@
         <h3>{{dish.name | uppercase}}</h3>
       </md-card-title>
     </md-card-header>
-    <img md-card-image src={{dish.image}} alt={{dish.name}}>
+    <img md-card-image src="{{BaseURL + dish.image}}" alt={{dish.name}}>
     <md-card-content>
       <p>{{dish.description}}
       </p>
     </md-card-content>
   </md-card>
   
-  <div fxFlex [hidden]="dish">
+  <div fxFlex [hidden]="dish || dishErrMess || promoErrMess">
       <md-spinner></md-spinner> <h4>Loading... Please wait</h4>
+  </div>
+
+  <div *ngIf="dishErrMess">
+    <h2>Error</h2>
+    <h4>{{dishErrMess}}</h4>
+  </div>
+
+  <div *ngIf="dishPromoMess">
+    <h2>Error</h2>
+    <h4>{{promoErrMess}}</h4>
   </div>
 
   <md-card *ngIf="promotion" fxFlex>
@@ -30,7 +40,7 @@
         <h3>{{promotion.name | uppercase}}</h3>
       </md-card-title>
     </md-card-header>
-    <img md-card-image src={{promotion.image}} alt={{promotion.name}}>
+    <img md-card-image src="{{BaseURL + promotion.image}}" alt={{promotion.name}}>
     <md-card-content>
       <p>{{promotion.description}}
       </p>

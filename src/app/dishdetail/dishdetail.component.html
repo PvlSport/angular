@@ -6,8 +6,13 @@
   fxLayoutGap="10px"
   fxLayoutGap.xs="0">
 
-  <div [hidden]="dish" fxFlex>
+  <div [hidden]="dish || errMess" fxFlex>
     <md-spinner></md-spinner> <h4>Loading... Please wait</h4>
+  </div>
+  
+  <div *ngIf="errMess">
+    <h2>Error</h2>
+    <h4>{{errMess}}</h4>
   </div>
 
   <div fxFlex="40" *ngIf="dish">    
@@ -17,7 +22,7 @@
           <h3>{{dish.name | uppercase}}</h3>
         </md-card-title>
       </md-card-header>
-      <img md-card-image src={{dish.image}} alt={{dish.name}}>
+      <img md-card-image src="{{BaseURL + dish.image}}" alt={{dish.name}}>
       <md-card-content>
         <p>{{dish.description}}
         </p>

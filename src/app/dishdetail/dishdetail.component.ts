@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Dish } from '../shared/dish';
 
 import { DishService } from '../services/dish.service';
@@ -18,10 +18,12 @@ export class DishdetailComponent implements OnInit {
   dishIds: number[];
   prev: number;
   next: number;
+  errMess: string;
 
   constructor(private dishservice: DishService,
     private route: ActivatedRoute,
-    private location: Location) { }
+    private location: Location,
+    @Inject('BaseURL') private BaseURL) { }
 
   ngOnInit() {
     this.dishservice.getDishIds()
@@ -30,9 +32,10 @@ export class DishdetailComponent implements OnInit {
     this.route.params
       .switchMap((params: Params) => this.dishservice.getDish(+params['id']))
       .subscribe(result =>  {
-        this.dish = result;
-        this.setPrevNext(result.id);
-      });
+          this.dish = result;
+          this.setPrevNext(result.id);
+        },
+        errMess => this.errMess = <any>errMess);
   }
 
   setPrevNext(dishId: number) {
