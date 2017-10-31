@@ -13,28 +13,28 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 
+import { RestangularModule, Restangular } from 'ngx-restangular';
+
 @Injectable()
 export class DishService {
 
-  constructor(private http: Http,
-    private processHttpmsgService: ProcessHttpmsgService) { }
+  constructor(
+    private restangular: Restangular,
+    private http: Http,
+    private processHttpmsgService: ProcessHttpmsgService
+  ) { }
 
   getDishes(): Observable<Dish[]> {
-    return this.http.get(baseURL + 'dishes')
-      .map(res => this.processHttpmsgService.extractData(res) )
-      .catch(error => this.processHttpmsgService.handleError(error));
+    return this.restangular.all('dishes').getList();
   }
 
   getDish(id: number): Observable<Dish> {
-    return this.http.get(baseURL + 'dishes/' + 'id')
-      .map(res => this.processHttpmsgService.extractData(res) )
-      .catch(error => this.processHttpmsgService.handleError(error));
+    return this.restangular.one('dishes', id);
   }
 
   getFeaturedDish(): Observable<Dish> {
-    return this.http.get(baseURL + 'dishes?featured=true')
-      .map(res => this.processHttpmsgService.extractData(res) )[0]
-      .catch(error => this.processHttpmsgService.handleError(error));
+    return this.restangular.all('dishes').getList( {featured: true} )
+      .map(dishes => dishes[0]);
   }
 
   getDishIds(): Observable<number[]> {

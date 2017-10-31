@@ -26,6 +26,9 @@ import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 
 import { baseURL } from './shared/baseurl';
+import { RestangularConfigFactory } from './shared/restConfig';
+
+import { RestangularModule, Restangular } from 'ngx-restangular';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,8 @@ import { baseURL } from './shared/baseurl';
     MaterialModule,
     FlexLayoutModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RestangularModule.forRoot(RestangularConfigFactory)
   ],
   providers: [
     DishService,
