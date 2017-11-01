@@ -15,7 +15,7 @@
     <h4>{{errMess}}</h4>
   </div>
 
-  <div fxFlex="40" *ngIf="dish">    
+  <div fxFlex="40" *ngIf="dish" [@visibility]="visibility" [@expand]>    
     <md-card>
       <md-card-header>
         <md-card-title>
@@ -42,7 +42,7 @@
     </md-card>
   </div>
 
-  <div fxFlex="40" *ngIf="dish">
+  <div fxFlex="40" *ngIf="dish" [@visibility]="visibility" [@expand]>
     <md-list>
       <h3>Comments</h3>
       <md-list-item *ngFor="let comment of dish.comments">
